@@ -10,15 +10,33 @@
 <body>
 
     <div id = "newForm">
-        <label for="name">Game name</label>
+        <label for="name">Book title</label>
         <input id = "name" type="text">
-        <label for="genre">Genre</label>
-        <input id = "genre" type="text">
-        <label for="timesPlayed">Times played</label>
-        <input id = "timesPlayed" type="text">
-        <button id = "addButton">Add new game!</button>        
+        <label for="author">author</label>
+        <input id = "author" type="text">
+        <label for="pages">pages</label>
+        <input id = "pages" type="text">
+        <label for="read">Have you read the book?</label>
+        <input id = "read" type = "checkbox">
+        <br>
+        <button id = "addButton">Add new book!</button> 
+              
     </div>
     
+    <div id = "cardArea">
+        <div class = "card">
+            <img src = "Pictures/settlers-of-catan-boardgame-danish.jpg" class = "coverPic">
+            <div id = "cardInfo">
+            <ul>
+                <li>J.K. Rowling</li>
+                <li> Harry Potter</li>
+                <li>pages 150</li>
+                <li>read</li>
+            </ul>
+            </div>
+            <img src = "Pictures/delete.png" class = "icon">   
+        </div>
+    </div>
 
     <script src="main.js"></script>
 </body>
