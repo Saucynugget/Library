@@ -20,11 +20,12 @@ let myLibrary = [
 loadLibrary()
 printLibrary(myLibrary)
 
-function Book(name, author, pages, read) {
+function Book(name, author, pages, read, cover) {
     this.name = name
     this.author = author
     this.pages = pages
     this.read = read
+    this.cover = cover
     myLibrary.push(this)
 }
 
@@ -35,17 +36,28 @@ function printLibrary(arr) {
     
     const cardArea = document.querySelector('#cardArea')
     cardArea.textContent = ""
-    cardArea.classList.add('cardArea')
 
     arr.forEach(function(item, index){
         let card = document.createElement('div')
         card.classList.add('card')
         //card.setAttribute("id", index)
         cardArea.appendChild(card)
+        
+        let cover = document.createElement('img')
+        cover.classList.add("cover")
+        cover.src = item.cover
+        cover.onerror = function(){
+           console.log("asd")   
+            cover.src = 'Pictures/noCover.png';
+         };
+        card.appendChild(cover);
+         
+
         let title = document.createElement('h2')
         title.classList.add('title')
         title.textContent = item.name
         card.appendChild(title)
+
 
         let status = "Not read"
         item.read === true ? status = "Read" : status = "Not read";
@@ -53,37 +65,35 @@ function printLibrary(arr) {
         let info = document.createElement('p')
         info.classList.add('info')
         info.textContent =  `Author: ${item.author}
-                            Pages: ${item.pages}
-                            Status:  ${status}`
+                             Pages: ${item.pages}
+                             Status:  ${status}`
         card.appendChild(info)
 
-
-        //the delete button
         let del = document.createElement('img')
         del.setAttribute("data-index", index)
         del.src = "Pictures/delete.png"
         del.classList.add('icon')
         card.appendChild(del)
-        del.addEventListener("click", function(index){
-            myLibrary.splice(index, 1)
-            del.parentNode.remove()
- 
-        })   
+        document.querySelector(`[data-index='${index}']`).addEventListener("click", function(){
+        arr.splice(index, 1)
+        del.parentElement.remove();
+        console.log(myLibrary)
+        storeLibrary(arr)
+        })
 
 
-     //the read status button
-     let statusBtn = document.createElement('input')
-     statusBtn.type = "checkbox"
-     statusBtn.setAttribute("data-status", index)
-     card.appendChild(statusBtn)
-     item.read === true ? statusBtn.checked = true : statusBtn.checked = false;   
-     statusBtn.addEventListener("click", function(){
+        //the read status button
+        let statusBtn = document.createElement('input')
+        statusBtn.type = "checkbox"
+        statusBtn.setAttribute("data-status", index)
+        card.appendChild(statusBtn)
+        item.read === true ? statusBtn.checked = true : statusBtn.checked = false;   
+        statusBtn.addEventListener("click", function(){
         statusBtn.checked === true ? item.read = true : item.read = false
-        storeLibrary(myLibrary)
+        storeLibrary(arr)
     })
 })    
-
-}
+}   
 
 
 document.getElementById("addButton").addEventListener("click", function() {
@@ -91,7 +101,8 @@ document.getElementById("addButton").addEventListener("click", function() {
     let author = document.getElementById("author")
     let pages = document.getElementById("pages")
     let read = document.getElementById("read")
-    let book = new Book(name.value, author.value, pages.value, read.checked)
+    let cover = document.getElementById("cover")
+    let book = new Book(name.value, author.value, pages.value, read.checked, cover.value)
     
     if(name.value === "" || name.value === undefined){
         alert("Please enter name of your book!")
@@ -101,6 +112,7 @@ document.getElementById("addButton").addEventListener("click", function() {
     name.value = ""
     pages.value = ""
     author.value = ""
+    cover.calue = ""
     } 
     storeLibrary(myLibrary)
 });
@@ -116,3 +128,7 @@ function loadLibrary(){
     myLibrary = JSON.parse(localStorage.getItem("library"))
 }
 
+function deleteButton() {
+    
+
+}

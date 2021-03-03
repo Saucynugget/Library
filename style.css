@@ -1,6 +1,7 @@
 body {
     display: flex;
     flex-direction: row;
+    background-color: #EAE7DC;
 }
 
 #newForm {
@@ -9,6 +10,41 @@ body {
     width: 300px;
     height: 1fr;
     padding: 10px;
+    border: 2px solid #8E8D8A
+}
+
+label{
+    color: #E85A4F;
+}
+
+.card {
+    min-height: 200px;
+    min-width: 300px;
+    display: flex;
+    
+    background-color: #D8C3A5;
+    margin: 15px;
+    margin-left: 30px;
+    border: 2px solid #8E8D8A
+}
+
+.cover{
+    height: 175px;
+    width: 150px;
+    padding: 5px
+}
+
+h2 {
+    width: 60%;
+    height: 20%;
+    margin-left: 10px;
+    color: #E85A4F
+}
+
+.info{
+    height: 80%;
+    color: #E85A4F
+
 }
 
 input{
@@ -32,38 +68,18 @@ label {
     
 }
 
-.card {
-    min-height: 200px;
-    min-width: 300px;
-    display: flex;
-    flex-direction: row;
-    background-color: gray;
-    margin: 15px;
-    margin-left: 30px;
-}
-
-
-.info{
-    justify-self: flex-start;
-}
-
 .icon {
-    width: 20px;
-    height: 20px;
-    justify-self:;
-    margin-left: 100px;
+    width: 25px;
+    height: 25px;
+    margin-top: 8px;
+}
 
+.icon:hover{
+    width: 28px;
+    height: 28px;
 }
 
 #cardInfo {
     display: flex;
     flex-direction: column;
-}
-
-.played {
-
-}
-
-.notPlayed{
-
 }
